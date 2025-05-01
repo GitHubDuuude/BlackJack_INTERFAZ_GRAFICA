@@ -5,199 +5,189 @@
 
 package co.edu.uptc.view;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.geom.RoundRectangle2D;
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import java.io.InputStream;
 
-/**
- * @author sebas
- */
+public class GameGUI extends Application {
 
-public class GameGUI extends JFrame {
-
-	public GameGUI() {
-		setTitle("CRUPIER");
-		setSize(800, 600);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLayout(new BorderLayout());
-		getContentPane().setBackground(new Color(0, 100, 0)); // Fondo verde oscuro
-
-		// Panel principal con BorderLayout
-		JPanel mainPanel = new JPanel(new BorderLayout());
-		mainPanel.setOpaque(false);
-
-		// Panel superior
-		JPanel topPanel = createTopPanel();
-		mainPanel.add(topPanel, BorderLayout.NORTH);
-
-		// Panel central con cartas
-		JPanel centerPanel = createCenterPanel();
-		mainPanel.add(centerPanel, BorderLayout.CENTER);
-
-		// Panel inferior
-		JPanel bottomPanel = createBottomPanel();
-		mainPanel.add(bottomPanel, BorderLayout.SOUTH);
-
-		add(mainPanel);
-		setVisible(true);
-	}
-
-	private JPanel createTopPanel() {
-		JPanel panel = new JPanel(new BorderLayout());
-		panel.setOpaque(false);
-		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-		// Esquinas superiores
-		JPanel cornerPanel = new JPanel(new GridLayout(1, 2));
-		cornerPanel.add(createCornerBox("?"));
-		cornerPanel.add(createCornerBox("?"));
-		panel.add(cornerPanel, BorderLayout.NORTH);
-
-		// Título y hora
-		JLabel title = new JLabel("CRUPIER", SwingConstants.CENTER);
-		title.setFont(new Font("Arial", Font.BOLD, 24));
-		title.setForeground(Color.WHITE);
-		panel.add(title, BorderLayout.CENTER);
-
-		JLabel time = new JLabel("00:30", SwingConstants.CENTER);
-		time.setForeground(Color.WHITE);
-		panel.add(time, BorderLayout.SOUTH);
-
-		return panel;
-	}
-
-	private JPanel createCornerBox(String text) {
-		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(30, 30));
-		panel.setBackground(Color.WHITE);
-		panel.setLayout(new GridBagLayout());
-
-		JLabel label = new JLabel(text);
-		label.setFont(new Font("Arial", Font.BOLD, 20));
-		panel.add(label);
-		return panel;
-	}
-
-	private JPanel createCenterPanel() {
-		JPanel panel = new JPanel(new BorderLayout());
-		panel.setOpaque(false);
-		panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-
-		// Reglas del crupier
-		JPanel rulesPanel = new JPanel();
-		rulesPanel.setBackground(Color.WHITE);
-		rulesPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		JLabel rules = new JLabel("El crupier debe pedir hasta alcanzar 16 y plantarse en 17");
-		rules.setForeground(Color.YELLOW);
-		rulesPanel.add(rules);
-		panel.add(rulesPanel, BorderLayout.NORTH);
-
-		// Paneles de apuestas
-		JPanel betsPanel = new JPanel(new GridLayout(1, 3, 10, 0));
-		betsPanel.add(createRoundedPanel("Paga 2 a 1"));
-		betsPanel.add(createRoundedPanel("SEGURO"));
-		betsPanel.add(createRoundedPanel("Paga 2 a 1"));
-		panel.add(betsPanel, BorderLayout.CENTER);
-
-		// Jugadores
-		JPanel playersPanel = new JPanel(new GridLayout(1, 2));
-		playersPanel.add(createPlayerPanel("Jugador 1"));
-		playersPanel.add(createPlayerPanel("Jugador 2"));
-		panel.add(playersPanel, BorderLayout.SOUTH);
-
-		return panel;
-	}
-
-	private JPanel createRoundedPanel(String text) {
-		return new JPanel() {
-			@Override
-			protected void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				Graphics2D g2d = (Graphics2D) g;
-				g2d.setColor(Color.WHITE);
-				g2d.setStroke(new BasicStroke(2));
-				g2d.draw(new RoundRectangle2D.Double(1, 1, getWidth() - 2, getHeight() - 2, 20, 20));
-
-				JLabel label = new JLabel(text, SwingConstants.CENTER);
-				label.setBounds(0, 0, getWidth(), getHeight());
-				add(label);
-			}
-		};
-	}
-
-	private JPanel createPlayerPanel(String name) {
-		JPanel panel = new JPanel(new BorderLayout());
-		panel.setOpaque(false);
-
-		// Cartas
-		JPanel cardsPanel = new JPanel();
-		cardsPanel.add(createCard(true));
-		cardsPanel.add(createCard(false));
-		panel.add(cardsPanel, BorderLayout.CENTER);
-
-		// Nombre
-		JLabel nameLabel = new JLabel(name, SwingConstants.CENTER);
-		nameLabel.setForeground(Color.WHITE);
-		panel.add(nameLabel, BorderLayout.SOUTH);
-
-		return panel;
-	}
-
-	private JPanel createCard(boolean visible) {
-		return new JPanel() {
-			@Override
-			protected void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				if (visible) {
-					g.setColor(Color.RED);
-					g.fillRect(0, 0, 50, 70);
-				}
-				else {
-					g.setColor(Color.BLUE);
-					g.fillRect(0, 0, 50, 70);
-				}
-			}
-		};
-	}
-
-	private JPanel createBottomPanel() {
-		JPanel panel = new JPanel(new BorderLayout());
-		panel.setOpaque(false);
-		panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-
-		// Acciones
-		JPanel actionsPanel = new JPanel();
-		actionsPanel.setBackground(new Color(0, 100, 0));
-		String[] actions = { "Doblar", "Rendirse", "Quedarse" };
-		for (String action : actions) {
-			JButton btn = new JButton(action);
-			btn.setBackground(Color.WHITE);
-			actionsPanel.add(btn);
-		}
-		panel.add(actionsPanel, BorderLayout.WEST);
-
-		// Fichas
-		JPanel chipsPanel = new JPanel();
-		chipsPanel.add(new JLabel("150"));
-		chipsPanel.add(createChip());
-		panel.add(chipsPanel, BorderLayout.EAST);
-
-		return panel;
-	}
-
-	private JPanel createChip() {
-		return new JPanel() {
-			@Override
-			protected void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				g.setColor(Color.BLACK);
-				g.fillOval(0, 0, 30, 30);
-			}
-		};
-	}
-
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(() -> new GameGUI());
-	}
-
+    private static final String FONT_NAME = "Press Start 2P";
+    private static final Color DARK_GREEN = Color.rgb(22, 83, 47);
+    private static final Color GOLD = Color.rgb(255, 183, 27);
+    private static final Color BLACK = Color.BLACK;
+    
+    @Override
+    public void start(Stage primaryStage) {
+        // Cargar la fuente externa (necesitas tener el archivo .ttf en tu classpath)
+        try {
+            Font.loadFont(getClass().getResourceAsStream("/resources/PressStart2P-Regular.ttf"), 14);
+        } catch (Exception e) {
+            System.err.println("No se pudo cargar la fuente: " + e.getMessage());
+        }
+        
+        // Configurar el contenedor principal
+        BorderPane root = new BorderPane();
+        
+        // Configurar el fondo verde con patrón
+        Image backgroundImage = new Image(getClass().getResourceAsStream("/resources/background.png"));
+        BackgroundImage bgImage = new BackgroundImage(
+                backgroundImage, 
+                BackgroundRepeat.REPEAT, 
+                BackgroundRepeat.REPEAT, 
+                BackgroundPosition.DEFAULT, 
+                BackgroundSize.DEFAULT);
+        root.setBackground(new Background(bgImage));
+        
+        // Crear título pixelado "BLACKJACK!"
+        Text titleText = new Text("BLACKJACK!");
+        titleText.setFont(Font.font(FONT_NAME, 36));
+        titleText.setFill(BLACK);
+        
+        // Crear el borde dorado alrededor del texto
+        StackPane titleContainer = new StackPane();
+        Text titleOutline = new Text("BLACKJACK!");
+        titleOutline.setFont(Font.font(FONT_NAME, 40));
+        titleOutline.setFill(GOLD);
+        titleContainer.getChildren().addAll(titleOutline, titleText);
+        titleContainer.setPadding(new Insets(20));
+        
+        // Configurar los botones con estilo pixelado
+        Button playButton = createPixelButton("Jugar", GOLD, BLACK);
+        Button rulesButton = createPixelButton("Reglas?", Color.rgb(150, 60, 60), Color.LIGHTGRAY);
+        Button exitButton = createPixelButton("Salir", GOLD, BLACK);
+        
+        // Crear contenedor para los botones
+        VBox buttonContainer = new VBox(20);
+        buttonContainer.setAlignment(Pos.CENTER);
+        buttonContainer.getChildren().addAll(playButton, rulesButton, exitButton);
+        
+        // Crear las cartas de Ases en las esquinas
+        HBox leftCards = createCardPlacement(true);
+        HBox rightCards = createCardPlacement(false);
+        
+        // Organizar todos los elementos en el layout
+        root.setTop(titleContainer);
+        root.setCenter(buttonContainer);
+        BorderPane.setAlignment(titleContainer, Pos.CENTER);
+        BorderPane.setAlignment(buttonContainer, Pos.CENTER);
+        
+        // Añadir las cartas a las esquinas
+        root.setLeft(leftCards);
+        root.setRight(rightCards);
+        BorderPane.setMargin(leftCards, new Insets(100, 0, 0, 30));
+        BorderPane.setMargin(rightCards, new Insets(100, 30, 0, 0));
+        
+        // Crear la escena
+        Scene scene = new Scene(root, 800, 600);
+        
+        // Configurar la ventana principal
+        primaryStage.setTitle("BlackJack Game");
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.show();
+        
+        // Añadir funcionalidad a los botones
+        playButton.setOnAction(e -> {
+            System.out.println("¡Iniciar juego!");
+            // Aquí iría la lógica para iniciar el juego
+        });
+        
+        rulesButton.setOnAction(e -> {
+            System.out.println("Mostrar reglas");
+            // Aquí iría la lógica para mostrar las reglas
+        });
+        
+        exitButton.setOnAction(e -> {
+            System.out.println("Salir del juego");
+            primaryStage.close();
+        });
+    }
+    
+    private Button createPixelButton(String text, Color bgColor, Color textColor) {
+        Button button = new Button(text);
+        button.setFont(Font.font(FONT_NAME, 16));
+        button.setTextFill(textColor);
+        button.setPrefWidth(300);
+        button.setPrefHeight(50);
+        
+        // Crear un estilo pixelado para el botón
+        button.setStyle(
+            "-fx-background-color: " + toRGBCode(bgColor) + ";" +
+            "-fx-border-color: black;" +
+            "-fx-border-width: 3px;" +
+            "-fx-border-style: solid;" +
+            "-fx-padding: 10px;" +
+            "-fx-cursor: hand;"
+        );
+        
+        // Añadir efecto al pasar el mouse
+        button.setOnMouseEntered(e -> 
+            button.setStyle(
+                "-fx-background-color: " + toRGBCode(bgColor.brighter()) + ";" +
+                "-fx-border-color: white;" +
+                "-fx-border-width: 3px;" +
+                "-fx-border-style: solid;" +
+                "-fx-padding: 10px;" +
+                "-fx-cursor: hand;"
+            )
+        );
+        
+        button.setOnMouseExited(e -> 
+            button.setStyle(
+                "-fx-background-color: " + toRGBCode(bgColor) + ";" +
+                "-fx-border-color: black;" +
+                "-fx-border-width: 3px;" +
+                "-fx-border-style: solid;" +
+                "-fx-padding: 10px;" +
+                "-fx-cursor: hand;"
+            )
+        );
+        
+        return button;
+    }
+    
+    private HBox createCardPlacement(boolean isLeft) {
+        // Crear las imágenes de las cartas
+        // Necesitarás tener estas imágenes en tu classpath
+        ImageView spadeAce = new ImageView(new Image(getClass().getResourceAsStream("/resources/ace_spade.png")));
+        ImageView heartAce = new ImageView(new Image(getClass().getResourceAsStream("/resources/ace_heart.png")));
+        
+        spadeAce.setFitHeight(100);
+        spadeAce.setFitWidth(70);
+        heartAce.setFitHeight(100);
+        heartAce.setFitWidth(70);
+        
+        HBox cardBox = new HBox(-20); // Superposición negativa para que las cartas se solapen
+        
+        if (isLeft) {
+            cardBox.getChildren().addAll(spadeAce, heartAce);
+            cardBox.setRotate(-15); // Rotar ligeramente a la izquierda
+        } else {
+            cardBox.getChildren().addAll(heartAce, spadeAce);
+            cardBox.setRotate(15); // Rotar ligeramente a la derecha
+        }
+        
+        return cardBox;
+    }
+    
+    private String toRGBCode(Color color) {
+        return String.format("#%02X%02X%02X",
+                (int) (color.getRed() * 255),
+                (int) (color.getGreen() * 255),
+                (int) (color.getBlue() * 255));
+    }
+    
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
