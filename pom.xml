@@ -10,7 +10,16 @@
         <maven.compiler.release>24</maven.compiler.release>
         <exec.mainClass>co.edu.uptc.PrjBlackjackGUI</exec.mainClass>
     </properties>
-    <dependencies>
-        
-    </dependencies>
+<dependencies>
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-controls</artifactId>
+        <version>21.0.2</version>
+    </dependency>
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-fxml</artifactId>
+        <version>21.0.2</version>
+    </dependency>
+</dependencies>
 </project>
