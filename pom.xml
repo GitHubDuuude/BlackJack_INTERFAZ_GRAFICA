@@ -10,4 +10,7 @@
         <maven.compiler.release>24</maven.compiler.release>
         <exec.mainClass>co.edu.uptc.PrjBlackjackGUI</exec.mainClass>
     </properties>
+    <dependencies>
+        
+    </dependencies>
 </project>
