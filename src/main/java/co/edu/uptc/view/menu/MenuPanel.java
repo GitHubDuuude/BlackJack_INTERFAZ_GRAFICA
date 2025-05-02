@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 
 public class MenuPanel extends JPanel {
 
+
+
     private MainPanel mainPanel;
     private GridBagConstraints gbc;
     private ImageButton play;
@@ -42,13 +44,13 @@ public class MenuPanel extends JPanel {
 
     private void initComponents() {
         gbc = new GridBagConstraints();
-        play = new ImageButton("Play", false);
-        rules = new ImageButton("Rules", true);
-        exit = new ImageButton("Exit", false);
+        play = new ImageButton("Jugar", false, 16);
+        rules = new ImageButton("Reglas", true, 16);
+        exit = new ImageButton("Salir", false, 16);
 
         play.addActionListener(e -> mainPanel.updatePanel("login", true));
-        rules.addActionListener(e -> mainPanel.updatePanel("game", false));
-        exit.addActionListener(e -> System.exit(0));
+        rules.addActionListener(e -> mainPanel.openRulesPopup());
+        exit.addActionListener(e -> mainPanel.openClosePopup());
     }
 
 }

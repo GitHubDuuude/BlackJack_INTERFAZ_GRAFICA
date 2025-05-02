@@ -10,7 +10,7 @@ public class PlayersPanel extends JPanel {
     private JLabel leftPlayerLabel, centerPlayerLabel, rightPlayerLabel, decoration1, decoration2, decoration3;
     private JPanel leftPlayerPanel, centerPlayerPanel, rightPlayerPanel;
     private Image playerTokens;
-    private JPanel TEMPactionsPanel;
+    private ActionsPanel actionsPanel;
     private Font customFont;
 
     public PlayersPanel() {
@@ -24,7 +24,6 @@ public class PlayersPanel extends JPanel {
         secondLine();
         thirdLine();
         fourthLine();
-        fifthLine();
         applyFont(this);
     }
 
@@ -42,13 +41,23 @@ public class PlayersPanel extends JPanel {
 
     private void initComponents() {
         playerTokens = new ImageIcon(getClass().getResource("/images/icons/tokens.png")).getImage();
+        actionsPanel = new ActionsPanel();
 
-//        cardsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
-//        cardsPanel.setOpaque(false);
-//        for (int i = 0; i < 3; i++) {
-//            JLabel cardLabel = new JLabel(new ImageIcon(getClass().getResource("/images/cards/card_back.png")));
-//            cardsPanel.add(cardLabel);
-//        }
+        leftPlayerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        JLabel cardLabel = new JLabel(new ImageIcon(getClass().getResource("/images/cards/card_back.png")));
+        leftPlayerPanel.add(cardLabel);
+
+        centerPlayerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        cardLabel = new JLabel(new ImageIcon(getClass().getResource("/images/cards/card_back.png")));
+        centerPlayerPanel.add(cardLabel);
+
+        rightPlayerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        cardLabel = new JLabel(new ImageIcon(getClass().getResource("/images/cards/card_back.png")));
+        rightPlayerPanel.add(cardLabel);
+
+        leftPlayerPanel.setOpaque(false);
+        centerPlayerPanel.setOpaque(false);
+        rightPlayerPanel.setOpaque(false);
 
         initLabels();
     }
@@ -58,77 +67,79 @@ public class PlayersPanel extends JPanel {
         centerPlayerLabel = new JLabel("Jugador Central");
         rightPlayerLabel = new JLabel("Jugador Der");
 
+        leftPlayerLabel.setBackground(new Color(49,41,41,255));
+        leftPlayerLabel.setOpaque(true);
+        leftPlayerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        leftPlayerLabel.setBorder(BorderFactory.createLineBorder(new Color(238,189,138,255), 2, true) );
+        centerPlayerLabel.setBackground(new Color(49,41,41,255));
+        centerPlayerLabel.setOpaque(true);
+        centerPlayerLabel.setBorder(BorderFactory.createLineBorder(new Color(238,189,138,255), 2, true) );
+        centerPlayerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        rightPlayerLabel.setBackground(new Color(49,41,41,255));
+        rightPlayerLabel.setOpaque(true);
+        rightPlayerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        rightPlayerLabel.setBorder(BorderFactory.createLineBorder(new Color(238,189,138,255), 2, true) );
+
+
         decoration1 = new JLabel("Paga 2 a 1");
         decoration2 = new JLabel("SEGURO");
         decoration3 = new JLabel("Paga 2 a 1");
 
-        decoration1.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2, true));
-        decoration2.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2, true));
-        decoration3.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2, true));
+        decoration1.setBorder(new RoundedBorder(15));
+        decoration2.setBorder(new RoundedBorder(15));
+        decoration3.setBorder(new RoundedBorder(15));
+
+        decoration1.setHorizontalAlignment(SwingConstants.CENTER);
+        decoration2.setHorizontalAlignment(SwingConstants.CENTER);
+        decoration3.setHorizontalAlignment(SwingConstants.CENTER);
     }
 
     private void firstLine() {
-        gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.anchor = GridBagConstraints.LINE_END;
-        gbc.gridwidth = 3;
-        add(decoration1, gbc);
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.gridwidth = 2;
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 0));
+        panel.setOpaque(false);
+        panel.add(decoration1);
+        panel.add(decoration2);
+        panel.add(decoration3);
 
-        gbc.gridx = 4;
-        add(decoration3, gbc);
-        gbc.gridwidth = 1;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+
+        add(panel, gbc);
     }
 
     private void secondLine() {
-        gbc.gridy = 1;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 100, 5, 100);
+        gbc.gridwidth = 1;
+
+        add(leftPlayerPanel, gbc);
+
+        add(centerPlayerPanel, gbc);
+
         gbc.gridwidth = GridBagConstraints.REMAINDER;
-        add(decoration2, gbc);
-        gbc.fill = GridBagConstraints.NONE;
+        add(rightPlayerPanel, gbc);
         gbc.gridwidth = 1;
     }
 
     private void thirdLine() {
-//        gbc.gridy = 2;
-//        gbc.gridx = 1;
-//
-//        add(leftPlayerPanel, gbc);
-//
-//        gbc.gridx = 2;
-//        gbc.gridwidth = 3;
-//        add(centerPlayerPanel, gbc);
-//        gbc.gridwidth = 1;
-//
-//        gbc.gridx = 5;
-//        add(rightPlayerPanel, gbc);
+        gbc.ipadx = 30;
+        gbc.ipady = 35;
+        gbc.gridy = 2;
+        add(leftPlayerLabel, gbc);
+
+        add(centerPlayerLabel, gbc);
+
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        add(rightPlayerLabel, gbc);
     }
 
     private void fourthLine() {
         gbc.gridy = 3;
-        gbc.gridx = 1;
-        add(leftPlayerLabel, gbc);
-
-        gbc.gridx = 3;
-        add(centerPlayerLabel, gbc);
-
-        gbc.gridx = 5;
-        add(rightPlayerLabel, gbc);
-    }
-
-    private void fifthLine() {
-//        gbc.gridy = 4;
-//        gbc.gridx = 1;
-//        gbc.anchor = GridBagConstraints.LINE_START;
-//        gbc.gridwidth = GridBagConstraints.REMAINDER;
-//        add(TEMPactionsPanel, gbc);
+        gbc.anchor = GridBagConstraints.LAST_LINE_START;
+        add(actionsPanel, gbc);
     }
 
     private void applyFont(Component component) {
         if (component instanceof JLabel) {
             component.setFont(customFont);
-        } else if (component instanceof JButton) {
-            component.setFont(customFont.deriveFont(18f));
             component.setForeground(Color.WHITE);
         } else if (component instanceof Container) {
             for (Component child : ((Container) component).getComponents()) {

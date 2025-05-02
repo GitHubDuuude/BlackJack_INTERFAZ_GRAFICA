@@ -21,7 +21,7 @@ public class ImageButton extends JButton {
     private Color pressedColor;
     private Color releasedColor;
 
-    public ImageButton(String text, boolean inverted) {
+    public ImageButton(String text, boolean inverted, float fontSize) {
         super(text);
         if (inverted) {
             pressedColor = new Color(71,45,60,255);
@@ -65,7 +65,7 @@ public class ImageButton extends JButton {
         try {
             InputStream fontStream = getClass().getResourceAsStream("/fonts/PressStart2P-Regular.ttf");
             if (fontStream != null) {
-                Font font = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(20f);
+                Font font = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(fontSize);
                 setFont(font);
                 fontStream.close();
             }

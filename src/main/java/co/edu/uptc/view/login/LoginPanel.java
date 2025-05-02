@@ -1,6 +1,7 @@
 package co.edu.uptc.view.login;
 
 import co.edu.uptc.view.MainPanel;
+import co.edu.uptc.view.reusable.ImageButton;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -52,33 +53,12 @@ public class LoginPanel extends JPanel {
         JPanel franja = new JPanel(new GridBagLayout());
         franja.setOpaque(false);
 
-        JButton boton = new JButton() {
-            private Image imgBoton;
+        ImageButton boton = new ImageButton(textoBoton, false, 20) {
 
             {
-                try {
-                    String imagenPath = textoBoton.equals("JUGAR") ? "/images/icons/button_play.png" : "/images/icons/button_to_back.png";
-
-                    InputStream imgStream = getClass().getResourceAsStream(imagenPath);
-                    if (imgStream == null) {
-                        throw new IOException("No se encontró la imagen en la ruta: " + imagenPath);
-                    }
-
-                    BufferedImage imgOriginal = ImageIO.read(imgStream);
-                    int nuevoAncho = 250;
-                    int nuevoAlto = 80;
-                    imgBoton = imgOriginal.getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
-                    setPreferredSize(new Dimension(nuevoAncho, nuevoAlto));
-
-                } catch (IOException e) {
-                    System.err.println("Error al cargar imagen: " + e.getMessage());
-                }
-
-
                 setContentAreaFilled(false);
                 setBorderPainted(false);
                 setFocusPainted(false);
-                setText("");
 
                 addActionListener(e -> {
                     if (textoBoton.equals("JUGAR")) {
@@ -87,13 +67,6 @@ public class LoginPanel extends JPanel {
                         mainPanel.updatePanel("menu", true);
                     }
                 });
-            }
-
-            @Override
-            protected void paintComponent(Graphics g) {
-                if (imgBoton != null) {
-                    g.drawImage(imgBoton, 0, 0, getWidth(), getHeight(), this);
-                }
             }
         };
 

@@ -9,7 +9,7 @@ public class MainFrame extends JFrame {
     public MainFrame() {
         super("Blackjack!");
         initComponents();
-        setSize(1280, 720);
+        setSize(1400, 1000);
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);

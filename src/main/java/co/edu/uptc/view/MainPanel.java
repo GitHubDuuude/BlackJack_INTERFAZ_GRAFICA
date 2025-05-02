@@ -3,6 +3,8 @@ package co.edu.uptc.view;
 import co.edu.uptc.view.game.GamePanel;
 import co.edu.uptc.view.login.LoginPanel;
 import co.edu.uptc.view.menu.MenuPanel;
+import co.edu.uptc.view.popups.ClosePanel;
+import co.edu.uptc.view.rules.RulesPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +13,8 @@ public class MainPanel extends JPanel {
     private MenuPanel menuPanel;
     private GamePanel gamePanel;
     private LoginPanel loginPanel;
+    private RulesPanel rulesPanel;
+    private ClosePanel closePanel;
 
     private Image gameBackground;
     private CardLayout cardLayout;
@@ -23,9 +27,11 @@ public class MainPanel extends JPanel {
     }
 
     public void initComponents() {
+        rulesPanel = new RulesPanel();
         menuPanel = new MenuPanel(this);
-        gamePanel = new GamePanel();
+        gamePanel = new GamePanel(this);
         loginPanel = new LoginPanel(this);
+        closePanel = new ClosePanel(this);
 
         setGameBackground(true);
         add(menuPanel, "menu");
@@ -46,6 +52,14 @@ public class MainPanel extends JPanel {
             gameBackground = new ImageIcon(getClass().getResource("/images/backgrounds/game_background.png")).getImage();
         }
         repaint();
+    }
+
+    public void openClosePopup() {
+        closePanel.showPopUp(true);
+    }
+
+    public void openRulesPopup() {
+        rulesPanel.showPopUp(true);
     }
 
     @Override

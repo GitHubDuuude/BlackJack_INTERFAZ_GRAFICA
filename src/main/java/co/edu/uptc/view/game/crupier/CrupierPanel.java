@@ -59,15 +59,15 @@ public class CrupierPanel extends JPanel {
     }
 
     private void initButtons() {
-        pauseButton = new ArcadeButton("||", customFont, Color.WHITE, new Color(94, 54, 67, 255));
+        pauseButton = new ArcadeButton("X", customFont, Color.WHITE, new Color(94, 54, 67, 255));
         helpButton = new ArcadeButton("?", customFont, Color.WHITE, new Color(94, 54, 67, 255));
 
         pauseButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "El crupier debe pedir hasta alcanzar 16 y plantarse en todos los 17", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
+            gamePanel.openClosePopup();
         });
 
         helpButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "El crupier debe pedir hasta alcanzar 16 y plantarse en todos los 17", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
+            gamePanel.openRulesMenu();
         });
     }
 

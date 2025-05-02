@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="prjBlackjackGUI:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/prjBlackjackGUI_jar</output-path>
+    <root id="archive" name="prjBlackjackGUI.jar">
+      <element id="module-output" name="prjBlackjackGUI" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/25-ea+14/javafx-base-25-ea+14.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/21.0.2/javafx-fxml-21.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/25-ea+14/javafx-base-25-ea+14-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/25-ea+14/javafx-graphics-25-ea+14.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/21.0.2/javafx-controls-21.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/21.0.2/javafx-controls-21.0.2-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/21.0.2/javafx-fxml-21.0.2-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/25-ea+14/javafx-graphics-25-ea+14-win.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
