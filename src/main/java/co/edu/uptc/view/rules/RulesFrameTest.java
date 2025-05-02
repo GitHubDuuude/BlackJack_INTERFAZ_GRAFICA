@@ -34,13 +34,13 @@ public class RulesFrameTest extends JFrame {
 					JOptionPane.WARNING_MESSAGE);
 		}
 	}
-	
-	private void initComponents(){
+
+	private void initComponents() {
 		setLookAndFeel();
 		RulesMainPanel mainPanel = new RulesMainPanel();
 		this.setContentPane(mainPanel);
 	}
-	
+
 	public static void main(String[] args) {
 		new RulesFrameTest();
 	}

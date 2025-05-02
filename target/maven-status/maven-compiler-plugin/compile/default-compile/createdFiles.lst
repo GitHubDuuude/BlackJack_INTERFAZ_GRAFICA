@@ -1,9 +1,10 @@
 co\edu\uptc\view\menu\Prueba2.class
 co\edu\uptc\view\GameGUI.class
-co\edu\uptc\view\rules\RulesPanelConstants.class
 co\edu\uptc\view\rules\CrupierPanel.class
 co\edu\uptc\view\rules\RulesMainPanel.class
+co\edu\uptc\view\rules\Constants.class
 co\edu\uptc\view\game\Prueba.class
 co\edu\uptc\view\rules\ActionsPanel.class
 co\edu\uptc\view\rules\RewardsPanel.class
 co\edu\uptc\view\rules\RulesFrameTest.class
+co\edu\uptc\view\rules\RulesInfoPanel.class

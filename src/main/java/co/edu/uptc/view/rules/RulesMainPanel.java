@@ -31,30 +31,30 @@ public class RulesMainPanel extends JPanel {
 
 	private void initPanels() {
 		rulesInfoPanel = new RulesInfoPanel(this);
-		this.add(rulesInfoPanel, RulesPanelConstants.RULES_INFO_PANEL_NAME);
+		this.add(rulesInfoPanel, Constants.RULES_INFO_PANEL_NAME);
 		actionsPanel = new ActionsPanel(this);
-		this.add(actionsPanel, RulesPanelConstants.ACTIONS_PANEL_NAME);
+		this.add(actionsPanel, Constants.ACTIONS_PANEL_NAME);
 		crupierPanel = new CrupierPanel(this);
-		this.add(crupierPanel, RulesPanelConstants.CRUPIER_PANEL_NAME);
+		this.add(crupierPanel, Constants.CRUPIER_PANEL_NAME);
 		rewardsPanel = new RewardsPanel(this);
-		this.add(rewardsPanel, RulesPanelConstants.REWARDS_PANEL_NAME);
+		this.add(rewardsPanel, Constants.REWARDS_PANEL_NAME);
 		showRulesInfoPanel();
 	}
 
 	public void showRulesInfoPanel() {
-		cardLayout.show(this, RulesPanelConstants.RULES_INFO_PANEL_NAME);
+		cardLayout.show(this, Constants.RULES_INFO_PANEL_NAME);
 	}
 
 	public void showActionsPanel() {
-		cardLayout.show(this, RulesPanelConstants.ACTIONS_PANEL_NAME);
+		cardLayout.show(this, Constants.ACTIONS_PANEL_NAME);
 	}
 
 	public void showCrupierPanel() {
-		cardLayout.show(this, RulesPanelConstants.CRUPIER_PANEL_NAME);
+		cardLayout.show(this, Constants.CRUPIER_PANEL_NAME);
 	}
 
 	public void showRewardsPanel() {
-		cardLayout.show(this, RulesPanelConstants.REWARDS_PANEL_NAME);
+		cardLayout.show(this, Constants.REWARDS_PANEL_NAME);
 	}
 
 }
