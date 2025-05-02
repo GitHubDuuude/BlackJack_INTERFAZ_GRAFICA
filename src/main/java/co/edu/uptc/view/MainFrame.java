@@ -1,4 +1,4 @@
-package co.edu.uptc.view.game;
+package co.edu.uptc.view;
 
 import javax.swing.*;
 
@@ -12,9 +12,7 @@ public class MainFrame extends JFrame {
         setSize(1280, 720);
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
         setVisible(true);
-
     }
 
     public void initComponents() {
